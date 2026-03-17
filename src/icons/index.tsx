@@ -95,7 +95,7 @@ export function PrevIcon() {
 
 export function NextIcon() {
     return (
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <polyline points="9 18 15 12 9 6" />
         </svg>
     )

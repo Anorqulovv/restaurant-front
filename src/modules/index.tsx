@@ -5,5 +5,7 @@ import NewsSection from "./Home/NewsSection";
 import PopularMeals from "./Home/PopularMeals";
 import WhyUsSection from "./Home/WhyUsSection";
 import Footer from "./Footer";
+import MenuSection from "./Menu/MenuSection"; 
+import NewsPage from "./News/NewsPage";
 
-export { Header, HeroSection, PopularMeals, BookingSection, WhyUsSection, NewsSection, Footer }
+export { Header, HeroSection, PopularMeals, BookingSection, WhyUsSection, NewsSection, Footer, MenuSection, NewsPage }

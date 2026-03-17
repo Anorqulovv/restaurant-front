@@ -16,7 +16,7 @@ const HeroSection = () => {
 
           <div className="flex items-center justify-between px-12 pt-4 pb-16">
             <div className="max-w-sm">
-              <h1 className="text-[64px] font-black text-black leading-[130%] tracking-tight uppercase mb-8">
+              <h1 className="text-[64px] font-black text-black leading-[160%] tracking-tighter uppercase mb-8">
                 Вкусная<br />Еда ждет<br />Тебя!
               </h1>
               <MenuButton title="Посмотреть меню" href="/menu" />

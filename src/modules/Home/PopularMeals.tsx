@@ -93,7 +93,7 @@ const PopularMeals = () => {
           <NextIcon />
         </button>
       </div>
-      <div className="containers flex justify-end mt-10">
+      <div className="containers flex justify-end pt-7">
         <MenuButton title="Посмотреть меню" href="/menu" />
       </div>
     </section>

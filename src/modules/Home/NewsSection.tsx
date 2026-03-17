@@ -24,7 +24,7 @@ const newsItems: NewsItem[] = [
 
 const NewsSection = () => {
     return (
-        <section className="py-20">
+        <section className="py-10">
             <div className="containers">
                 <h2 className="text-4xl font-black text-black text-center mb-16">
                     Новости/Галерея
@@ -35,7 +35,7 @@ const NewsSection = () => {
                     ))}
                 </div>
                 <div className="flex justify-end mt-15">
-                    <MenuButton title="Посмотреть все" />
+                    <MenuButton href="/news" title="Посмотреть все" />
                 </div>
             </div>
         </section>

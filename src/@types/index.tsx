@@ -25,3 +25,8 @@ export interface RegisterForm {
     confirmPassword: string;
     agreed: boolean;
 }
+
+export interface GalleryItem {
+    id: number;
+    image: string;
+}

@@ -6,7 +6,7 @@ interface LeafProps {
 }
 
 const Leaf = ({ style }: LeafProps) => (
-    <div className="absolute pointer-events-none z-20" style={style}>
+    <div className="absolute select-none pointer-events-none z-20" style={style}>
         <Image src="/images/leaf.png" alt="" fill className="object-contain" />
     </div>
 );
