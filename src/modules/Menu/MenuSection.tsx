@@ -1,21 +1,35 @@
 "use client";
 
 import { useState } from "react";
-import { HeroHeader, Leaf } from '@/components'
-import MealCard from "@/components/MealCard";
-import { Meal } from "@/@types";
+import { HeroHeader, Leaf, ProductCard } from '@/components'
+import { Products } from "@/@types";
 import Link from "next/link";
 
-const baseMeal: Meal = {
-  id: 1,
-  name: "Chicken soup",
-  description: "Spicy with garlic",
-  price: 10.00,
-  image: "/images/meal2.svg",
-};
+const baseProduct: Products[] = [
+  {
+    id: 1,
+    isActive: true,
+    createdAt: "",
+    updatedAt: "",
+    category: {
+      id: 1,
+      isActive: true,
+      createdAt: "",
+      updatedAt: "",
+      name: "Soup",
+    },
+    name: "Chicken soup",
+    description: "Spicy with garlic",
+    price: 10,
+    image: "/images/meal1.svg",
+    rating: 5,
+    reviewsCount: 10,
+    isAvailable: true,
+  },
+];
 
-const sampleMeals: Meal[] = Array.from({ length: 16 }, (_, index) => ({
-  ...baseMeal,
+const sampleProducts: Products[] = Array.from({ length: 16 }, (_, index) => ({
+  ...baseProduct,
   id: index + 1,
 }));
 
@@ -61,8 +75,8 @@ const MenuSection = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-x-6 gap-y-30">
-              {sampleMeals.map((meal) => (
-                <MealCard key={meal.id} meal={meal} />
+              {sampleProducts.map((product,index) => (
+                <ProductCard key={index} product={product} />
               ))}
             </div>
           </div>

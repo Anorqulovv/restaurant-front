@@ -3,22 +3,34 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AuthInput, SubmitButton } from "@/components";
-import { RegisterForm } from "@/@types";
+import { Register } from "@/@types";
+import { register } from "@/service";
+import { useRouter } from "next/navigation";
+
 
 export default function RegisterPage() {
-  const [form, setForm] = useState<RegisterForm>({
-    firstName: "", lastName: "", phone: "",
-    username: "", password: "", confirmPassword: "",
-    agreed: false,
+  const [form, setForm] = useState<Register>({
+    firstName: "", lastName: "", email: "",
+    username: "", password: "", confirmPassword: ""
   });
 
-  const set = (key: keyof RegisterForm, value: string | boolean) =>
+  const router = useRouter();
+
+  const set = (key: keyof Register, value: string | boolean) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
-  };
+    try {
+        const { confirmPassword, ...registerData } = form;
+        const data = await register(registerData);
+        (e.target as HTMLFormElement).reset();
+        setForm({ firstName: "", lastName: "", email: "", username: "", password: "", confirmPassword: "" });
+        router.push('/login')
+    } catch (error: any) {
+        console.error("LOGIN ERROR:", error.response?.data || error.message);
+    }
+ };
 
   return (
     <div className="w-full max-w-sm">
@@ -36,8 +48,8 @@ export default function RegisterPage() {
           <AuthInput type="text" placeholder="Фамилия"
             value={form.lastName} onChange={(v) => set("lastName", v)} />
 
-          <AuthInput type="tel" placeholder="Ваш номер телефона"
-            value={form.phone} onChange={(v) => set("phone", v)} />
+          <AuthInput type="email" placeholder="Ваш емаил"
+            value={form.email} onChange={(v) => set("email", v)} />
 
           <AuthInput type="text" placeholder="Ваше имя пользователя"
             value={form.username} onChange={(v) => set("username", v)} />
@@ -48,7 +60,7 @@ export default function RegisterPage() {
           <AuthInput type="password" placeholder="Подтвердите пароль"
             value={form.confirmPassword} onChange={(v) => set("confirmPassword", v)} />
 
-          <label className="flex items-start gap-3 cursor-pointer mt-1">
+          {/* <label className="flex items-start gap-3 cursor-pointer mt-1">
             <input type="checkbox" checked={form.agreed} onChange={(e) => set("agreed", e.target.checked)} className="mt-0.5 w-4 h-4 accent-black bg-white/40 cursor-pointer shrink-0" />
             <span className="text-[10.5px] text-black/50 leading">
               Я прочитал и принял{" "}
@@ -57,7 +69,7 @@ export default function RegisterPage() {
               </Link>{" "}
               и Условия*
             </span>
-          </label>
+          </label> */}
 
           <SubmitButton>Вход в аккаунт</SubmitButton>
 

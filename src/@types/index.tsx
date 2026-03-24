@@ -1,32 +1,37 @@
-export interface Meal {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
+export interface Login {
+    username: string;
+    password: string;
 }
 
-export interface NewsItem {
-    id: number;
-    image: string;
-    text: string;
-    author: {
-        name: string;
-        avatar: string;
-    };
-}
-
-export interface RegisterForm {
+export interface Register{
     firstName: string;
     lastName: string;
-    phone: string;
+    email: string;
     username: string;
     password: string;
     confirmPassword: string;
-    agreed: boolean;
 }
 
-export interface GalleryItem {
-    id: number;
-    image: string;
+export interface Category{
+    id: number,
+    isActive: boolean,
+    createdAt: string,
+    updatedAt: string,
+    name: string
 }
+
+export interface Products{
+    id: number,
+    isActive: boolean,
+    createdAt: string,
+    updatedAt: string,
+    category: Category,
+    name: string,
+    description: string,
+    price: number,
+    image: string,
+    rating: number,
+    reviewsCount: number,
+    isAvailable: boolean
+}
+

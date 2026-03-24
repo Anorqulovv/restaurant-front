@@ -1,10 +1,10 @@
-import { BookingSection, HeroSection, NewsSection, PopularMeals, WhyUsSection } from "@/modules"
+import { BookingSection, HeroSection, NewsSection, PopularProducts, WhyUsSection } from "@/modules"
 
 const Home = () => {
   return (
     <>
       <HeroSection />
-      <PopularMeals />
+      <PopularProducts />
       <BookingSection />
       <WhyUsSection />
       <NewsSection />

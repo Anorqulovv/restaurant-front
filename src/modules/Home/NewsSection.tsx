@@ -1,7 +1,6 @@
-import { NewsItem } from "@/@types";
 import { MenuButton, NewsCard } from "@/components";
 
-const newsItems: NewsItem[] = [
+const newsItems = [
     {
         id: 1,
         image: "/images/news1.svg",

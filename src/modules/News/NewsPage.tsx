@@ -3,18 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { GalleryCard, HeroHeader, Leaf, NewsCard, Pagination } from "@/components";
-import { GalleryItem, NewsItem } from "@/@types";
 
 const newsText = "Используйте гибкие структуры, чтобы предоставить надежный обзор для обзоров высокого уровня. Итеративные подходы к данным корпоративной.";
 
-const allNews: NewsItem[] = Array.from({ length: 12 }, (_, i) => ({
+const allNews = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
     image: `/images/news${(i % 3) + 1}.svg`,
     text: newsText,
     author: { name: "Сергей", avatar: "/images/avatar1.svg" },
 }));
 
-const allGallery: GalleryItem[] = Array.from({ length: 8 }, (_, i) => ({
+const allGallery = Array.from({ length: 8 }, (_, i) => ({
     id: i + 1,
     image: `/images/image${i + 1}.svg`,
 }));
