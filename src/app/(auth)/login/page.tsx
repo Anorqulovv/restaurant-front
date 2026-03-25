@@ -21,7 +21,7 @@ export default function LoginPage() {
         username,
         password,
       });
-      setCookie('access_token', data.data.accessToken, { maxAge: 60 * 15 });
+      setCookie('access_token', data.data.accessToken, { maxAge: 60 * 30 });
       setCookie('refresh_token', data.data.refreshToken, { maxAge: 60 * 60 * 24 * 7 }); 
       router.push('/')
     } catch (error: any) {

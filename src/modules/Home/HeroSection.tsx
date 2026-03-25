@@ -28,7 +28,8 @@ const HeroSection = () => {
               <Leaf style={{ top: 330, left: -80, width: 200, height: 200, transform: "rotate(100deg)" }} />
 
               <div className="relative rounded-full overflow-hidden shadow-2xl mt-5" style={{ width: 480, height: 480 }}>
-                <Image src="/images/steak.svg" alt="Delicious meal" fill className="object-cover" />
+                <Image src="/images/steak.svg" alt="Delicious meal" loading="eager" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"className="object-cover" />
+
               </div>
 
               <Leaf style={{ bottom: 0, right: -10, width: 200, height: 200, transform: "rotate(30deg) scaleX(-1)" }} />

@@ -1,43 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeroHeader, Leaf, ProductCard } from '@/components'
-import { Products } from "@/@types";
 import Link from "next/link";
-
-const baseProduct: Products[] = [
-  {
-    id: 1,
-    isActive: true,
-    createdAt: "",
-    updatedAt: "",
-    category: {
-      id: 1,
-      isActive: true,
-      createdAt: "",
-      updatedAt: "",
-      name: "Soup",
-    },
-    name: "Chicken soup",
-    description: "Spicy with garlic",
-    price: 10,
-    image: "/images/meal1.svg",
-    rating: 5,
-    reviewsCount: 10,
-    isAvailable: true,
-  },
-];
-
-const sampleProducts: Products[] = Array.from({ length: 16 }, (_, index) => ({
-  ...baseProduct,
-  id: index + 1,
-}));
-
-const CATEGORIES = ["Первые", "Вторые", "Салаты", "Напитки", "Фаст-Фуд"];
+import { getCategory, getProducts } from "@/service";
 
 const MenuSection = () => {
+  const [products,setProducts] = useState([]);
+  const [categories,setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("Первые");
 
+  useEffect(()=>{
+    const fetch = () => {
+      try {
+          getProducts().then(res => {
+          setProducts(res.data)
+        })
+        getCategory().then(res2 => {
+          setCategories(res2.data)
+        })
+      } catch (error) {
+        console.error("Xatolik yuz berdi:", error);
+      }
+    }
+    fetch()
+  },[])
+  
   return (
     <div className="relative z-10 flex flex-col pt-5 pb-24">
       <Leaf style={{ top: "220px", right: "20px", width: "230px", height: "230px", transform: "rotate(185deg)" }} />
@@ -66,16 +54,16 @@ const MenuSection = () => {
 
             <div className="flex justify-center mb-35">
               <div className="inline-flex items-center rounded-full px-2 py-2 gap-1" style={{ background: "rgba(255,255,255,0.45)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 4px 24px rgba(0,0,0,0.07)", }} >
-                {CATEGORIES.map((cat) => (
-                  <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-7 py-1.5 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer whitespace-nowrap ${activeCategory === cat ? "bg-white text-black" : "text-black/70 hover:text-black hover:bg-white/50"}`} >
-                    {cat}
+                {categories.map((cat,index) => (
+                  <button key={index} onClick={() => setActiveCategory(cat)} className={`px-7 py-1.5 text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer whitespace-nowrap ${activeCategory === cat ? "bg-white text-black" : "text-black/70 hover:text-black hover:bg-white/50"}`} >
+                    {cat.name}
                   </button>
                 ))}
               </div>
             </div>
 
             <div className="grid grid-cols-4 gap-x-6 gap-y-30">
-              {sampleProducts.map((product,index) => (
+              {products.map((product,index) => (
                 <ProductCard key={index} product={product} />
               ))}
             </div>

@@ -6,18 +6,18 @@ const footerLinks = {
     services: {
         title: "Наши услуги",
         links: [
-            { label: "Цены", href: "#" },
-            { label: "Отслеживание", href: "#" },
-            { label: "Сообщить об ошибке", href: "#" },
-            { label: "Условия услуг", href: "#" },
+            { label: "Цены", href: "menu" },
+            { label: "Отслеживание", href: "about" },
+            { label: "Сообщить об ошибке", href: "contacts" },
+            { label: "Условия услуг", href: "about" },
         ],
     },
     company: {
         title: "Наша компания",
         links: [
-            { label: "Отчетность", href: "#" },
-            { label: "Свяжитесь с нами", href: "#" },
-            { label: "Управление", href: "#" },
+            { label: "Отчетность", href: "contscts" },
+            { label: "Свяжитесь с нами", href: "contacts" },
+            { label: "Управление", href: "about" },
         ],
     },
 };
@@ -25,19 +25,19 @@ const footerLinks = {
 const Footer = () => {
     return (
         <footer className="relative py-10 overflow-hidden">
-            <Image src="/images/footer-bg.png" alt="img" fill className="object-cover" />
+            <Image src="/images/footer-bg.png" alt="Footer background" fill sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-white/40 backdrop-blur-mb" />
             <div className="relative z-10 containers grid grid-cols-4 gap-12">
                 <div className="flex flex-col gap-2">
                     <div className="text-[3rem] font-black text-black tracking-tight">LOGO</div>
                     <div className="flex items-center gap-3">
-                        <Link href="#" className="text-black hover:scale-110 transition-transform">
+                        <Link href="https://t.me/anorkhulov" className="text-black hover:scale-110 transition-transform">
                             <TelegramIcon />
                         </Link>
                         <Link href="#" className="text-black hover:scale-110 transition-transform">
                             <WhatsappIcon />
                         </Link>
-                        <Link href="#" className="text-black hover:scale-110 transition-transform">
+                        <Link href="https://www.facebook.com/profile.php?id=61578558703507" className="text-black hover:scale-110 transition-transform">
                             <FacebookIcon />
                         </Link>
                         <Link href="#" className="text-black hover:scale-110 transition-transform">

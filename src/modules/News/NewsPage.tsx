@@ -1,35 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GalleryCard, HeroHeader, Leaf, NewsCard, Pagination } from "@/components";
-
-const newsText = "Используйте гибкие структуры, чтобы предоставить надежный обзор для обзоров высокого уровня. Итеративные подходы к данным корпоративной.";
-
-const allNews = Array.from({ length: 12 }, (_, i) => ({
-    id: i + 1,
-    image: `/images/news${(i % 3) + 1}.svg`,
-    text: newsText,
-    author: { name: "Сергей", avatar: "/images/avatar1.svg" },
-}));
-
-const allGallery = Array.from({ length: 8 }, (_, i) => ({
-    id: i + 1,
-    image: `/images/image${i + 1}.svg`,
-}));
+import { getGalelery, getNews } from "@/service";
 
 const NEWS_PER_PAGE = 6;
 const GALLERY_PER_PAGE = 8;
 
 const NewsPage = () => {
+    const [news,setNews] = useState([])
+    const [galalery,setGalelery] = useState([])
     const [newsPage, setNewsPage] = useState(1);
     const [galleryPage, setGalleryPage] = useState(1);
 
-    const totalNewsPages = Math.ceil(allNews.length / NEWS_PER_PAGE);
-    const totalGalleryPages = Math.ceil(allGallery.length / GALLERY_PER_PAGE);
+    useEffect(() => {
+        const fetch = async () => {
+          try {
+            const data = await getNews();
+            const data2 = await getGalelery();
+            setNews(data.data);
+            setGalelery(data2.data);
+          } catch (error) {
+            console.error("Xatolik yuz berdi:", error);
+          }
+        };
+        fetch();
+      }, []);
 
-    const currentNews = allNews.slice((newsPage - 1) * NEWS_PER_PAGE, newsPage * NEWS_PER_PAGE);
-    const currentGallery = allGallery.slice((galleryPage - 1) * GALLERY_PER_PAGE, galleryPage * GALLERY_PER_PAGE);
+    const totalNewsPages = Math.ceil(news.length / NEWS_PER_PAGE);
+    const totalGalleryPages = Math.ceil(galalery.length / GALLERY_PER_PAGE);
+
+    const currentNews = news.slice((newsPage - 1) * NEWS_PER_PAGE, newsPage * NEWS_PER_PAGE);
+    const currentGallery = galalery.slice((galleryPage - 1) * GALLERY_PER_PAGE, galleryPage * GALLERY_PER_PAGE);
 
     return (
         <div className="relative z-10 flex flex-col pt-5 pb-24">
@@ -54,7 +57,7 @@ const NewsPage = () => {
                         </h1>
 
                         <div className="grid grid-cols-3 gap-x-8 gap-y-24 mt-16">
-                            {currentNews.map((item) => (<NewsCard key={item.id} item={item} />))}
+                            {currentNews.map((item,index) => (<NewsCard key={index} item={item} />))}
                         </div>
 
                         <Pagination current={newsPage} total={totalNewsPages} onChange={setNewsPage} />
@@ -64,7 +67,7 @@ const NewsPage = () => {
                         </h2>
 
                         <div className="grid grid-cols-4 gap-7 gap-y-12">
-                            {currentGallery.map((item) => (<GalleryCard key={item.id} item={item} />))}
+                            {currentGallery.map((item,index) => (<GalleryCard key={index} item={item} />))}
                         </div>
 
                         <Pagination current={galleryPage} total={totalGalleryPages} onChange={setGalleryPage} />

@@ -5,7 +5,8 @@ import Link from 'next/link';
 const NotFound = () => {
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <Image src="/images/bbgg.png" alt="" fill className="object-cover" priority />
+            <Image src="/images/bbgg.png" alt="Background banner" fill priority sizes="100vw" className="object-cover" />
+
             <div className="absolute inset-0" />
 
             <Leaf style={{ top: "10%", left: "-30px", width: 240, height: 290, transform: "rotate(-25deg)" }} />

@@ -17,7 +17,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
       className={`relative flex flex-col pb-5 transition-all duration-300 ease-out hover:-translate-y-1 ${featured ? "shadow-2xl" : "shadow-md"}`}
       style={{ width: "263px", minHeight: "310px", background: "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 100%)", borderRadius: "38px", flexShrink: 0, }} >
       <div className={`relative rounded-full overflow-hidden mx-auto ${featured ? "-mt-20 w-60 h-60" : "-mt-16 w-52 h-52"}`}>
-        <Image src={product.image} alt={product.name} fill className="object-cover" />
+        <Image src={`https://anorkhulov.uz/${product.image}`} alt="Mahsulot rasmi" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{ objectFit: 'cover' }} />
       </div>
       <div className="flex flex-col px-5 mt-4 flex-1">
         <div className="flex items-start justify-between gap-2">

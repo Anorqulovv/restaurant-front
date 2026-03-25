@@ -13,8 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Restaurant | Вкусная еда ждет тебя",
-  description: "Онлайн ресторан — просматривайте меню, бронируйте столики и наслаждайтесь вкусной едой.",
+  title: "Restaurant",
   keywords: ["ресторан", "меню", "бронирование", "еда"],
   icons: {
     icon: "/icons/favicon.svg"

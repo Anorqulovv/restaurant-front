@@ -10,5 +10,9 @@ import SubmitButton from "./SubminButton";
 import GalleryCard from "./GalleryCard";
 import Pagination from "./Pagination";
 import PageLoader from "./PageLoader";
+import Contact from "./Contact";
+import WorkTimes from "./WorkTimes";
+import CustomBooking from "./CustomBooking";
+import Inputs from "./Inputs";
 
-export { HeroHeader, MenuButton, ProductCard, LanguageSelect, CustomSelect, NewsCard, Leaf, AuthInput, SubmitButton, GalleryCard, Pagination, PageLoader }
+export { HeroHeader,Contact,WorkTimes,Inputs, CustomBooking, MenuButton,ProductCard, LanguageSelect, CustomSelect, NewsCard, Leaf, AuthInput, SubmitButton, GalleryCard, Pagination, PageLoader }

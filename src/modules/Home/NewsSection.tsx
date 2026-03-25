@@ -1,27 +1,24 @@
-import { MenuButton, NewsCard } from "@/components";
+"use client"
 
-const newsItems = [
-    {
-        id: 1,
-        image: "/images/news1.svg",
-        text: "Используйте гибкие структуры, чтобы предоставить надежный обзор для обзоров высокого уровня. Итеративные подходы к данным корпоративной.",
-        author: { name: "Сергей", avatar: "/images/avatar1.svg" },
-    },
-    {
-        id: 2,
-        image: "/images/news2.svg",
-        text: "Используйте гибкие структуры, чтобы предоставить надежный обзор для обзоров высокого уровня. Итеративные подходы к данным корпоративной.",
-        author: { name: "Сергей", avatar: "/images/avatar1.svg" },
-    },
-    {
-        id: 3,
-        image: "/images/news3.svg",
-        text: "Используйте гибкие структуры, чтобы предоставить надежный обзор для обзоров высокого уровня. Итеративные подходы к данным корпоративной.",
-        author: { name: "Сергей", avatar: "/images/avatar1.svg" },
-    },
-];
+import { MenuButton, NewsCard } from "@/components";
+import { getNews } from "@/service";
+import { useEffect, useState } from "react";
 
 const NewsSection = () => {
+    const [data,setData] = useState([])
+
+     useEffect(() => {
+        const fetchNews = async () => {
+          try {
+            const data = await getNews();
+            setData(data.data);
+          } catch (error) {
+            console.error("Xatolik yuz berdi:", error);
+          }
+        };
+        fetchNews();
+      }, []);
+
     return (
         <section className="py-10">
             <div className="containers">
@@ -29,8 +26,8 @@ const NewsSection = () => {
                     Новости/Галерея
                 </h2>
                 <div className="grid grid-cols-3 gap-30 items-start">
-                    {newsItems.map((item) => (
-                        <NewsCard key={item.id} item={item} />
+                    {data.slice(0, 3).map((item,index) => (
+                        <NewsCard key={index} item={item} />
                     ))}
                 </div>
                 <div className="flex justify-end mt-15">

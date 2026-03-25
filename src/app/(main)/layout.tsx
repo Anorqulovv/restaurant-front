@@ -7,7 +7,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     return (
         <div className="relative min-h-screen">
             <PageLoader />
-            <Image src="/images/bbgg.png" alt="img" fill className="object-cover" priority />
+            <Image src="/images/bbgg.png" alt="Background image" fill priority sizes="100vw" className="object-cover" />
             <div className="relative z-10 flex flex-col min-h-screen">
                 <Header />
                 <main className="flex-1">{children}</main>

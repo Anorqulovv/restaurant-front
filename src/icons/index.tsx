@@ -11,9 +11,14 @@ export function IconBtn({ children, badge }: { children: React.ReactNode; badge?
     );
 }
 
-export function Field({ children }: { children: React.ReactNode }) {
+interface Field{
+    children: React.ReactNode,
+    extraClass?: string
+}
+
+export function Field({ children,extraClass }: Field) {
     return (
-        <div className="flex items-center justify-between border-b-2 border-black/55 pb-3 pt-1">
+        <div className={`flex items-center justify-between border-b-2 border-black/55 pb-3 pt-1 ${extraClass}`}>
             {children}
         </div>
     );

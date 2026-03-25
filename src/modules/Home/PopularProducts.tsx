@@ -38,12 +38,12 @@ const PopularMeals = () => {
     <section className="containers relative py-7">
       <div className="absolute pointer-events-none z-0"
         style={{ bottom: "54px", left: "-130px", width: 220, height: 210, transform: "rotate(10deg)" }}>
-        <Image src="/images/leaf.png" alt="" fill className="object-contain" />
+        <Image src="/images/leaf.png" loading="eager" alt="Leaf decoration" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-contain" />
       </div>
 
       <div className="absolute pointer-events-none z-0"
         style={{ top: "4px", right: "-125px", width: 220, height: 240, transform: "rotate(180deg)" }}>
-        <Image src="/images/leaf.png" alt="img" fill className="object-contain" />
+        <Image src="/images/leaf.png" loading="eager" alt="Decorative leaf" fill sizes="(max-width: 768px) 30vw, 15vw" className="object-contain" />
       </div>
 
       <h2 className="text-center text-4xl font-black text-black mb-12">

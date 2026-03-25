@@ -2,8 +2,9 @@
 
 import { CustomSelect, Leaf, SubmitButton } from "@/components";
 import { BookingIcon, CalendarIcon, ClockIcon, Field } from "@/icons";
+import { getTable, reservation } from "@/service";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const guestOptions = [
   { value: "1", label: "1 человек" },
@@ -13,25 +14,39 @@ const guestOptions = [
   { value: "5", label: "5+ человек" },
 ];
 
-const locationOptions = [
-  { value: "hall1", label: "Зал 1" },
-  { value: "hall2", label: "Зал 2" },
-  { value: "terrace", label: "Терраса" },
-  { value: "vip", label: "VIP зал" },
-];
-
 const BookingSection = () => {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [guests, setGuests] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [location, setLocation] = useState("");
+  const [table,setTable]= useState([])
+  const [tableValue, setTableValue] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ phone, guests, date, time, location });
-  };
+   useEffect(() => {
+      const fetchTables = async () => {
+        try {
+          const data = await getTable();
+          setTable(data.data);
+        } catch (error) {
+          console.error("Xatolik yuz berdi:", error);
+        }
+      };
+      fetchTables();
+    }, []);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    await reservation({ customerName: email, email: email, guestCount: Number(guests),reservationDate: date,reservationTime: time, tableId: Number(tableValue) });
+    setEmail("");
+    setGuests("");
+    setDate("");
+    setTime("");
+    setTableValue("");
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};
   return (
     <section className="relative overflow-hidden">
       <Leaf style={{ top: "100px", right: "660px", width: 220, height: 240, transform: "rotate(-80deg)" }} />
@@ -51,7 +66,7 @@ const BookingSection = () => {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <Field>
-                <input type="tel" placeholder="Ваш номер" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-transparent text-sm text-black placeholder:text-black/40 outline-none" />
+                <input type="email" placeholder="Ваш эмаил" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-transparent text-sm text-black placeholder:text-black/40 outline-none" />
               </Field>
               <Field>
                 <CustomSelect options={guestOptions} placeholder="На сколько человек?" value={guests} onChange={setGuests} />
@@ -65,20 +80,18 @@ const BookingSection = () => {
                 <ClockIcon />
               </Field>
               <Field>
-                <CustomSelect options={locationOptions} placeholder="Выберите место" value={location} onChange={setLocation} />
+                <CustomSelect options={table.map((t: any) => ({ value: String(t.tableNumber), label: `Стол ${t.tableNumber}`, }))} placeholder="Выберите место" value={tableValue} onChange={setTableValue} />
               </Field>
-
               <button type="button" className="text-left text-sm text-blue-900 hover:text-blue-600 hover:underline cursor-pointer w-fit transition-colors" >
                 Выбрать места на карте
               </button>
-
               <SubmitButton children={'Забронировать'} />
             </form>
           </div>
         </div>
         <div className="relative flex-1 flex items-center justify-center">
           <div className="relative w-256.25 h-234">
-            <Image src="/images/pizza.svg" alt="Pizza" fill className="object-contain drop-shadow-2xl" />
+            <Image src="/images/pizza.svg" alt="Pizza" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-contain drop-shadow-2xl" />
           </div>
         </div>
       </div>

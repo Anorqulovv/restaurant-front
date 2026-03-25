@@ -28,7 +28,7 @@ const PageLoader = () => {
     return (
         <div className="fixed inset-0 z-9999 flex flex-col items-center justify-center" style={{ background: "rgba(255, 248, 240, 0.92)", backdropFilter: "blur(20px)", transition: "opacity 0.6s ease, transform 0.6s ease", opacity: fadeOut ? 0 : 1, pointerEvents: fadeOut ? "none" : "all", }} >
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <Image src="/images/bbgg.png" alt="" fill className="object-cover scale-110" style={{ filter: "blur(24px)", opacity: 0.4 }} priority />
+                <Image src="/images/bbgg.png" alt="Background decorative effect" fill priority sizes="100vw" className="object-cover scale-110"  style={{ filter: "blur(24px)", opacity: 0.4 }} />
             </div>
 
             <div className="relative z-10 flex flex-col items-center gap-8">
@@ -43,10 +43,10 @@ const PageLoader = () => {
                 </div>
 
                 <div className="absolute -top-16 -right-24 w-20 h-20 pointer-events-none select-none" style={{ animation: "leafSway 3s ease-in-out infinite" }}>
-                    <Image src="/images/leaf.png" alt="" fill className="object-contain" style={{ opacity: 0.7, transform: "rotate(-20deg)" }} />
+                    <Image src="/images/leaf.png" loading="eager" alt="Decorative leaf" fill sizes="(max-width: 768px) 25vw, 15vw" className="object-contain" style={{ opacity: 0.7, transform: "rotate(-20deg)" }} />
                 </div>
                 <div className="absolute -bottom-14 -left-20 w-16 h-16 pointer-events-none select-none" style={{ animation: "leafSway 3s ease-in-out infinite", animationDelay: "1.5s" }}>
-                    <Image src="/images/leaf.png" alt="" fill className="object-contain" style={{ opacity: 0.6, transform: "rotate(30deg)" }} />
+                    <Image src="/images/leaf.png" alt="img" loading="eager" fill sizes="(max-width: 768px) 25vw, 15vw" className="object-contain" style={{ opacity: 0.6, transform: "rotate(30deg)" }} />
                 </div>
             </div>
 
