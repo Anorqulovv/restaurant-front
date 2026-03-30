@@ -9,5 +9,6 @@ import MenuSection from "./Menu/MenuSection";
 import NewsPage from "./News/NewsPage";
 import BookingPage from "./Booking/BookingPage";
 import ContactPage from "./Contact/ContactPage";
+import AboutPage from "./About/AboutPage";
 
-export { Header, HeroSection,ContactPage, PopularProducts,BookingPage, BookingSection, WhyUsSection, NewsSection, Footer, MenuSection, NewsPage }
+export { Header, HeroSection,ContactPage,AboutPage, PopularProducts,BookingPage, BookingSection, WhyUsSection, NewsSection, Footer, MenuSection, NewsPage }

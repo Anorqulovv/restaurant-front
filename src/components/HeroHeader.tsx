@@ -29,7 +29,7 @@ const HeroHeader = () => {
             </ul>
             <div className="flex items-center gap-3">
                 <IconBtn><HeartIcon /></IconBtn>
-                <IconBtn badge={1}><CartIcon /></IconBtn>
+                <IconBtn badge={0}><CartIcon /></IconBtn>
             </div>
         </nav>
     );

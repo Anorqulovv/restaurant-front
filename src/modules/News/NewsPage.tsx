@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GalleryCard, HeroHeader, Leaf, NewsCard, Pagination } from "@/components";
 import { getGalelery, getNews } from "@/service";
+import Loading from "@/app/loading";
 
 const NEWS_PER_PAGE = 6;
 const GALLERY_PER_PAGE = 8;
@@ -13,20 +14,27 @@ const NewsPage = () => {
     const [galalery,setGalelery] = useState([])
     const [newsPage, setNewsPage] = useState(1);
     const [galleryPage, setGalleryPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetch = async () => {
-          try {
-            const data = await getNews();
-            const data2 = await getGalelery();
-            setNews(data.data);
-            setGalelery(data2.data);
-          } catch (error) {
-            console.error("Xatolik yuz berdi:", error);
-          }
+            try {
+                const [data, data2] = await Promise.all([
+                    getNews(),
+                    getGalelery(),
+                ]);
+                setNews(data.data);
+                setGalelery(data2.data);
+            } catch (error) {
+                console.error("Xatolik yuz berdi:", error);
+            } finally {
+                setIsLoading(false);
+            }
         };
         fetch();
-      }, []);
+    }, []);
+
+    if (isLoading) return <Loading />;
 
     const totalNewsPages = Math.ceil(news.length / NEWS_PER_PAGE);
     const totalGalleryPages = Math.ceil(galalery.length / GALLERY_PER_PAGE);

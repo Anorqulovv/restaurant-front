@@ -61,13 +61,11 @@ export interface NewsAuthor{
 }
 
 export interface Reservation{
-  customerName: string,
   email : string,
   guestCount: number,
   reservationDate: string,
   reservationTime: string,
-  tableId: number,
-  note?: string
+  tableId: number
 }
 
 export interface Contact{
@@ -77,4 +75,10 @@ export interface Contact{
   message: string;
 }
 
+export interface Cook {
+  avatar: string;
+  firstName: string;
+  lastName: string;
+  position: string;
+}
 

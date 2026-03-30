@@ -14,5 +14,8 @@ import Contact from "./Contact";
 import WorkTimes from "./WorkTimes";
 import CustomBooking from "./CustomBooking";
 import Inputs from "./Inputs";
+import CustomAbout from "./CustomAbout";
+import TeamCard from "./TeamCard";
 
-export { HeroHeader,Contact,WorkTimes,Inputs, CustomBooking, MenuButton,ProductCard, LanguageSelect, CustomSelect, NewsCard, Leaf, AuthInput, SubmitButton, GalleryCard, Pagination, PageLoader }
+
+export { HeroHeader,Contact,WorkTimes,Inputs,CustomAbout,TeamCard, CustomBooking, MenuButton,ProductCard, LanguageSelect, CustomSelect, NewsCard, Leaf, AuthInput, SubmitButton, GalleryCard, Pagination, PageLoader }

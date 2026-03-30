@@ -10,11 +10,6 @@
   display: none;
 }
 
-::selection {
-  background-color: red;
-  color: black;
-}
-
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
 }

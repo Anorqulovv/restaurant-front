@@ -16,7 +16,7 @@ const Contact = ({ title }: { title: string }) => {
             <div className="flex items-center justify-center gap-38.75">
                 {contactTypes.map((contact) => (
                     <div key={contact.id} className="flex flex-col items-center gap-4 text-center">
-                        <Image src={contact.icon} alt={contact.title} width={48} height={48} />
+                        <Image className="w-auto h-auto" style={{width:"auto", height:"auto"}} src={contact.icon} alt={contact.title} width={48} height={48} />
                         <h2 className="text-[18px] font-bold leading-[150%]">
                             {contact.title}
                         </h2>

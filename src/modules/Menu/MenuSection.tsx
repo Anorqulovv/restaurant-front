@@ -4,27 +4,33 @@ import { useEffect, useState } from "react";
 import { HeroHeader, Leaf, ProductCard } from '@/components'
 import Link from "next/link";
 import { getCategory, getProducts } from "@/service";
+import Loading from "@/app/loading";
 
 const MenuSection = () => {
   const [products,setProducts] = useState([]);
   const [categories,setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("Первые");
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(()=>{
-    const fetch = () => {
+  useEffect(() => {
+    const fetch = async () => {
       try {
-          getProducts().then(res => {
-          setProducts(res.data)
-        })
-        getCategory().then(res2 => {
-          setCategories(res2.data)
-        })
+        const [productsRes, categoriesRes] = await Promise.all([
+          getProducts(),
+          getCategory(),
+        ]);
+        setProducts(productsRes.data);
+        setCategories(categoriesRes.data);
       } catch (error) {
         console.error("Xatolik yuz berdi:", error);
+      } finally {
+        setIsLoading(false);
       }
-    }
-    fetch()
-  },[])
+    };
+    fetch();
+  }, []);
+
+  if (isLoading) return <Loading />;
   
   return (
     <div className="relative z-10 flex flex-col pt-5 pb-24">

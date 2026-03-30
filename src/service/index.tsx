@@ -45,3 +45,8 @@ export async function contact(data:Contact) {
   const res = await instance.post("/contact",data)
   return res.data
 }
+
+export async function getCook() {
+  const res = await instance.get("/cook")
+  return res.data
+}

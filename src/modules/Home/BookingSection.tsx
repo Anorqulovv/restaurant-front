@@ -37,7 +37,7 @@ const BookingSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    await reservation({ customerName: email, email: email, guestCount: Number(guests),reservationDate: date,reservationTime: time, tableId: Number(tableValue) });
+    await reservation({ email: email, guestCount: Number(guests),reservationDate: date,reservationTime: time, tableId: Number(tableValue) });
     setEmail("");
     setGuests("");
     setDate("");
